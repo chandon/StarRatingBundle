@@ -4,7 +4,11 @@ $(function(){
         if (input.attr('disabled')) {
             return;
         }
+        var oldValue=input.val();
         input.val($(this).attr('data-value'));
+        if (input.val()!=oldValue) {
+            input.trigger("change");
+        }
     }
 
     var turnToStar = function turnToStar(){
