@@ -3,30 +3,30 @@
 namespace blackknight467\StarRatingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class RatingType extends AbstractType
 {
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars = array_replace($view->vars, [
+        $view->vars = array_replace($view->vars, array(
             'stars' => $options['stars']
-        ]);
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults([
-            'attr' => [
+        $resolver->setDefaults(array(
+            'attr' => array(
                 'class' => 'rating',
-            ],
-            'scale' => 1,
+            ),
+            'precision' => 1,
             'stars' => 5,
-        ]);
+        ));
     }
 
     public function getParent()
@@ -34,7 +34,7 @@ class RatingType extends AbstractType
         return NumberType::class;
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'rating';
     }
